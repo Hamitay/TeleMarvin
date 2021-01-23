@@ -15,7 +15,7 @@ export default class AddNewSessionCommand implements Command {
     const session = await this.#sessionService.getNextSession(groupId);
 
     if (session) {
-      return messages.NEXT_SESSION(convertDateToBrazilianDateString(session.date), session.time);
+      return messages.NEXT_SESSION(convertDateToBrazilianDateString(session.date));
     }
 
     return messages.NO_SESSION_SCHEDULED;

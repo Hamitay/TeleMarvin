@@ -25,6 +25,10 @@ export class BotService {
     process.once('SIGTERM', () => this.#bot.stop('SIGTERM'))
   }
 
+  getInstance(): Telegraf {
+    return this.#bot;
+  }
+
   launchBot(): void {
     console.info('Launching bot service');
     this.#bot.launch();
@@ -41,7 +45,6 @@ export class BotService {
     const message = context.message as Message.TextMessage;
     const groupId = context.chat?.id;
     const args = message.text.split(' ').slice(1);
-
     const command = this.#commandFactory.getCommand(args);
 
     const response = await command.execute(groupId?.toString());

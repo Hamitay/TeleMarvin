@@ -1,6 +1,6 @@
 import { BotService } from './bot';
+import { Jobs } from './jobs';
 import * as dotenv from 'dotenv';
-
 
 console.info('Loading configuration')
 dotenv.config();
@@ -13,4 +13,6 @@ if (!TELEGRAM_TOKEN) {
 }
 
 const service = new BotService(TELEGRAM_TOKEN);
+const jobs = new Jobs(service.getInstance());
+
 service.launchBot();

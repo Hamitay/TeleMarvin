@@ -18,9 +18,8 @@ export default class AddNewSessionCommand implements Command {
 
   areParametersValid(): boolean {
     const date = this.#parameters[0];
-    const time = this.#parameters[1];
 
-    if (!date || !time) {
+    if (!date) {
       return false
     }
 
@@ -48,7 +47,6 @@ export default class AddNewSessionCommand implements Command {
 
     // Builds date
     const rawDate = this.#parameters[0];
-    const time = this.#parameters[1];
     const splitDate = rawDate.split("/")
 
     const year = parseInt(splitDate[2]);
@@ -68,7 +66,7 @@ export default class AddNewSessionCommand implements Command {
       return messages.TIME_TRAVELER;
     }
 
-    await this.#sessionService.createSession(groupId, time, date);
-    return messages.NEW_SESSION(rawDate, time);
+    await this.#sessionService.createSession(groupId, date);
+    return messages.NEW_SESSION(rawDate);
   }
 }
