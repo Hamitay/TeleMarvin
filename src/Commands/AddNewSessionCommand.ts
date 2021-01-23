@@ -71,7 +71,7 @@ export default class AddNewSessionCommand implements Command {
       await this.#sessionService.createSession(groupId, date);
     } catch(error) {
       if (error instanceof ConstrainError) {
-        return messages.CONSTRAIN_ERROR(date.toDateString());
+        return messages.CONSTRAIN_ERROR(rawDate);
       }
 
       return messages.UNKNOWN_ERROR;
