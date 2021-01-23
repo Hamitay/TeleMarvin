@@ -7,7 +7,7 @@ import messages from './messages';
 const TIMEZONE = 'America/Sao_Paulo';
 const NEXT_SESSION_OPTIONS = ['17h', '18h', '19h', '20h', '21h', 'Other'];
 
-const NEXT_SESSION_CRON = '0 16 11 * * * ';
+const NEXT_SESSION_CRON = '0 30 10 * * * ';
 export class Jobs {
   #bot: Telegraf;
 
