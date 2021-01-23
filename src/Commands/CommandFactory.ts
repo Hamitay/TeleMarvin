@@ -1,5 +1,6 @@
 import { Command } from './Command';
 import AddNewSessionCommand from './AddNewSessionCommand';
+import NextSessionCommand from './NextSessionCommand';
 import UnknownCommand from './UnknownCommand';
 
 export class CommandFactory {
@@ -13,6 +14,8 @@ export class CommandFactory {
     switch (directive) {
       case "newSession":
         return new AddNewSessionCommand(parameters);
+      case "nextSession":
+        return new NextSessionCommand();
       default:
         return new UnknownCommand();
     }

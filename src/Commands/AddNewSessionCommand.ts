@@ -2,10 +2,9 @@ import { Command } from './Command';
 import { SessionService } from '../services/SessionService';
 import messages from './messages';
 
+import { getBrazilianCurrentTime } from '../utils';
+
 const DATE_PATTERN = /(\d{2}\/\d{1,2}\/\d{1,4})/
-
-const getBrazilianCurrentTime = () => new Date(new Date().toLocaleString("en-US", {timeZone: "timezone id"}));
-
 export default class AddNewSessionCommand implements Command {
 
   #parameters: string [];
@@ -42,7 +41,7 @@ export default class AddNewSessionCommand implements Command {
     return new Date(saneYear, month - 1, day, 23, 59, 59, 0);
   }
 
-  execute(groupId: string): string {
+  async execute(groupId: string): Promise<string> {
     if (!this.areParametersValid()) {
       return messages.INVALID_PARAMETERS;
     }
@@ -63,7 +62,13 @@ export default class AddNewSessionCommand implements Command {
 
     const date = this.buildDate(year, month, day);
 
-    this.#sessionService.createSession(groupId, time, date);
+    //Check if date is in the past
+    const now = getBrazilianCurrentTime();
+    if (date < now) {
+      return messages.TIME_TRAVELER;
+    }
+
+    await this.#sessionService.createSession(groupId, time, date);
     return messages.NEW_SESSION(rawDate, time);
   }
 }

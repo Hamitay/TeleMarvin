@@ -1,3 +1,3 @@
 export interface Command {
-  execute(groupId: string | undefined) : string;
+  execute(groupId: string | undefined) : Promise<string>;
 }

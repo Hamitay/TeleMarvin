@@ -3,10 +3,8 @@ import { Message } from 'typegram/message';
 
 import { CommandFactory } from './Commands';
 
-// To do add config file
-const TOKEN = '';
+const TELEGRAM_TOKEN = '';
 const marvinRegex = /(_marvin)|(_m)\s.*/;
-
 class BotService {
   #bot: Telegraf;
 
@@ -17,7 +15,7 @@ class BotService {
   constructor() {
     // Load token from config
     console.info('Loading telegram bot config');
-    this.#bot = new Telegraf(TOKEN);
+    this.#bot = new Telegraf(TELEGRAM_TOKEN);
     this.#commandPattern = marvinRegex;
     this.#commandFactory = new CommandFactory();
 
@@ -44,7 +42,7 @@ class BotService {
 
     const command = this.#commandFactory.getCommand(args);
 
-    const response = command.execute(groupId?.toString());
+    const response = await command.execute(groupId?.toString());
 
     await context.reply(response);
   }

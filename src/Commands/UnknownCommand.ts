@@ -1,7 +1,7 @@
 import { Command } from './Command';
 
 export default class UnknownCommand implements Command {
-  execute(): string {
-    return "I can't understand what you are saying"
+  async execute(): Promise<string> {
+    return await "I can't understand what you are saying";
   }
 }
