@@ -1,6 +1,8 @@
+import { group } from 'console';
 import { Model, DataTypes } from 'sequelize';
 import { databaseInstance } from '../db';
 
+const TABLE_NAME = 'sessions';
 export class Session extends Model {
   public id!: number;
   public date!: Date;
@@ -18,16 +20,20 @@ Session.init(
     date: {
       type: DataTypes.DATEONLY,
       allowNull: false,
+      unique: 'group_date_constrain'
     },
     groupId: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: 'group_date_constrain'
     },
   },
   {
-    tableName: 'sessions',
+    tableName: TABLE_NAME,
     sequelize: databaseInstance,
-  }
+  },
+
 );
+
 
 Session.sync().then(() => console.info("Session table created!"));

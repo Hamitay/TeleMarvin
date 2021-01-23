@@ -1,15 +1,26 @@
 import { Session } from '../models';
-import { Op } from 'sequelize';
-
+import { Op, UniqueConstraintError } from 'sequelize';
+import { BaseError } from '../exceptions/BaseError';
+import { ConstrainError } from '../exceptions/ConstrainError';
 export class SessionRepository {
   async createSession(
     groupId: string,
     date: Date
   ): Promise<void> {
-    await Session.create({
-      date,
-      groupId,
-    });
+    try {
+      await Session.create({
+        date,
+        groupId,
+      });
+    } catch(error) {
+      console.error(error);
+      if(error instanceof UniqueConstraintError) {
+        throw new ConstrainError();
+      } else {
+        throw new BaseError();
+      }
+    }
+
   }
 
   async getSessionsAfterDateByGroupId(

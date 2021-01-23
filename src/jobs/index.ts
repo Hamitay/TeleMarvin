@@ -2,8 +2,12 @@ import { Telegraf } from 'telegraf';
 import { CronJob } from 'cron';
 import { SessionService } from '../services/SessionService';
 
-const TIMEZONE = 'America/Sao_Paulo';
+import messages from './messages';
 
+const TIMEZONE = 'America/Sao_Paulo';
+const NEXT_SESSION_OPTIONS = ['17h', '18h', '19h', '20h', '21h', 'Other'];
+
+const NEXT_SESSION_CRON = '0 16 11 * * * ';
 export class Jobs {
   #bot: Telegraf;
 
@@ -17,13 +21,12 @@ export class Jobs {
 
   setUpJobs(): void {
     const job = new CronJob(
-      '0 16 11 * * *',
+      NEXT_SESSION_CRON,
       async () => await this.nextSessionJob(),
       null,
       true,
       TIMEZONE
     );
-    //job.start();
 
     const stopJobs = () => {
       console.info('Stopping cron jobs');
@@ -38,11 +41,10 @@ export class Jobs {
   async nextSessionJob(): Promise<void> {
     const sessions = await this.#sessionService.getTodaysSession();
     sessions.forEach((session) => {
-      const message = `It seems you have scheduled a session for today ${session.date}. But when?`;
       this.#bot.telegram.sendPoll(
         session.groupId,
-        message,
-        ['17h', '18h', '19h', '20h', '21h', 'Other'],
+        messages.POLL_MESSAGE(session.date.toDateString()),
+        NEXT_SESSION_OPTIONS,
         { is_anonymous: false, allows_multiple_answers: true }
       );
     });

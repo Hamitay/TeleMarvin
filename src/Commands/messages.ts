@@ -5,5 +5,7 @@ export default {
   NO_SESSION_SCHEDULED: "There doesn't seem to be any session scheduled. What a pity 🤭.",
   NEXT_SESSION: (date: string) => `The next session will be on ${date}, I hope you don't come.`,
   TIME_TRAVELER: "Hey everyone it looks like we've got a time traveler in our midst, scheduling sessions in the past. Or maybe" +
-  " he is just stupid. Who knows?"
+  " he is just stupid. Who knows?",
+  CONSTRAIN_ERROR: (date: string) => `Sigh. There is already a session scheduled for ${date}`,
+  UNKNOWN_ERROR: "An unknown error appears to have ocurred. This is most likely your fault",
 }

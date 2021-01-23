@@ -3,6 +3,7 @@ import { SessionService } from '../services/SessionService';
 import messages from './messages';
 
 import { getBrazilianCurrentTime } from '../utils';
+import { ConstrainError } from '../exceptions/ConstrainError';
 
 const DATE_PATTERN = /(\d{2}\/\d{1,2}\/\d{1,4})/
 export default class AddNewSessionCommand implements Command {
@@ -66,7 +67,16 @@ export default class AddNewSessionCommand implements Command {
       return messages.TIME_TRAVELER;
     }
 
-    await this.#sessionService.createSession(groupId, date);
+    try {
+      await this.#sessionService.createSession(groupId, date);
+    } catch(error) {
+      if (error instanceof ConstrainError) {
+        return messages.CONSTRAIN_ERROR(date.toDateString());
+      }
+
+      return messages.UNKNOWN_ERROR;
+    }
+
     return messages.NEW_SESSION(rawDate);
   }
 }
