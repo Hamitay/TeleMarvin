@@ -30,4 +30,8 @@ export class SessionService {
     const sessions = await this.#sessionRepository.getSessionByDateRange(lowerTime, upperTime);
     return sessions;
   }
+
+  async deleteSessionByDateAndGroupId(groupId: string, date: Date) {
+    await this.#sessionRepository.deleteSessionByDateAndGroupId(groupId, date);
+  }
 }

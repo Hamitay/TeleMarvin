@@ -35,6 +35,14 @@ export class SessionRepository {
     });
   }
 
+  async deleteSessionByDateAndGroupId(groupId: string, date: Date) {
+    return await Session.destroy({
+      where: {
+        [Op.and]: [{ groupId }, { date }]
+      },
+    });
+  }
+
   async getSessionByDateRange(lowerDate: number, upperDate: number) {
     const sessions = await Session.findAll({
       where: {

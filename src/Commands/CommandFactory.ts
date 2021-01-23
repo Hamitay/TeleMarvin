@@ -2,7 +2,7 @@ import { Command } from './Command';
 import AddNewSessionCommand from './AddNewSessionCommand';
 import NextSessionCommand from './NextSessionCommand';
 import UnknownCommand from './UnknownCommand';
-
+import RemoveSessionCommand from './RemoveSessionCommand';
 export class CommandFactory {
 
   constructor() {}
@@ -16,6 +16,8 @@ export class CommandFactory {
         return new AddNewSessionCommand(parameters);
       case "nextSession":
         return new NextSessionCommand();
+      case "deleteSession":
+        return new RemoveSessionCommand(parameters);
       default:
         return new UnknownCommand();
     }

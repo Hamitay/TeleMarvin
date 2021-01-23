@@ -8,4 +8,5 @@ export default {
   " he is just stupid. Who knows?",
   CONSTRAIN_ERROR: (date: string) => `Sigh. There is already a session scheduled for ${date}`,
   UNKNOWN_ERROR: "An unknown error appears to have ocurred. This is most likely your fault",
+  SESSION_DELETED: (date: string) => `I've deleted your session on ${date}. More bad news, what a shocker.`
 }
