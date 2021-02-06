@@ -1,4 +1,4 @@
-import { DateTime } from "luxon";
+import { DateTime } from 'luxon';
 
 const STRING_FORMAT = process.env.STRING_FORMAT || 'dd/LL/yy';
 const TIMEZONE = process.env.TIMEZONE || 'America/Sao_Paulo';

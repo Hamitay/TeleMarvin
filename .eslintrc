@@ -8,5 +8,10 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended"
-  ]
+  ],
+  "rules": {
+    "quotes": [2, "single", { "allowTemplateLiterals": true}],
+    "max-len": [2, { "code": 140 }],
+    "indent": ["error", 2]
+  }
 }

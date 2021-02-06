@@ -9,19 +9,19 @@ export class SessionService {
     this.#sessionRepository = new SessionRepository();
   }
 
-  async createSession(groupId: string, date: Date) {
+  async createSession(groupId: string, date: Date): Promise<void> {
     await this.#sessionRepository.createSession(groupId, date);
   }
 
   async getNextSession(groupId: string): Promise<Session | undefined> {
     const now = getCurrentTime();
-    const sessions = await this.#sessionRepository.getSessionsAfterDateByGroupId(groupId, now.toJSDate())
+    const sessions = await this.#sessionRepository.getSessionsAfterDateByGroupId(groupId, now.toJSDate());
 
     if (sessions && sessions.length > 0) {
       return sessions[0].get();
     }
     return undefined
-  };
+  }
 
   async getTodaysSession(): Promise<Session[]> {
     const lowerTime = new Date().setHours(0,0, 0, 0);
@@ -31,7 +31,7 @@ export class SessionService {
     return sessions;
   }
 
-  async deleteSessionByDateAndGroupId(groupId: string, date: Date) {
+  async deleteSessionByDateAndGroupId(groupId: string, date: Date): Promise<void> {
     await this.#sessionRepository.deleteSessionByDateAndGroupId(groupId, date);
   }
 }

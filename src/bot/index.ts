@@ -41,7 +41,7 @@ export class BotService {
     );
   }
 
-  async processMessage(context: Context) {
+  async processMessage(context: Context): void {
     const message = context.message as Message.TextMessage;
     const groupId = context.chat?.id;
     const args = message.text.split(' ').slice(1);

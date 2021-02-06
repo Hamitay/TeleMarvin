@@ -15,4 +15,5 @@ if (!TELEGRAM_TOKEN) {
 const service = new BotService(TELEGRAM_TOKEN);
 const jobs = new Jobs(service.getInstance());
 
+jobs.setUpJobs();
 service.launchBot();

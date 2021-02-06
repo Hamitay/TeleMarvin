@@ -35,7 +35,7 @@ export class SessionRepository {
     });
   }
 
-  async deleteSessionByDateAndGroupId(groupId: string, date: Date) {
+  async deleteSessionByDateAndGroupId(groupId: string, date: Date): Promise<number> {
     return await Session.destroy({
       where: {
         [Op.and]: [{ groupId }, { date }]
@@ -43,7 +43,7 @@ export class SessionRepository {
     });
   }
 
-  async getSessionByDateRange(lowerDate: number, upperDate: number) {
+  async getSessionByDateRange(lowerDate: number, upperDate: number): Promise<Session[]> {
     const sessions = await Session.findAll({
       where: {
         date: {

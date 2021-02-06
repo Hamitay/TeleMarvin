@@ -35,4 +35,4 @@ Session.init(
 );
 
 
-Session.sync().then(() => console.info("Session table created!"));
+Session.sync().then(() => console.info('Session table created!'));

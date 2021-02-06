@@ -17,7 +17,6 @@ export class Jobs {
   constructor(bot: Telegraf) {
     this.#bot = bot;
     this.#sessionService = new SessionService();
-    this.setUpJobs();
   }
 
   setUpJobs(): void {
