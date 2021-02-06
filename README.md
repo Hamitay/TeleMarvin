@@ -38,8 +38,8 @@ $ docker run -d --name telemarvin
 
 There is also a `docker-compose` set up pointing to telemarvin @ dockerhub.
 
-```
+
 ## TODO LIST:
 * Write dev/prod setup
-* Integrate a better configuration file
-* Create github-actions integration for CI CD
+* Create releases workflows
+* Increase code coverage
