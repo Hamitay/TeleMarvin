@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  tele_marvin:
+    container_name: telemarvin
+    image: henriqueamitay/tele_marvin
+    volumes:
+      - ./persistence:/app/persistence/
