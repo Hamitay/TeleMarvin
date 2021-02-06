@@ -1,12 +1,20 @@
-FROM node:12.16.2-alpine
+# Builder stage
+FROM node:12.16.2-alpine as ts-builder
 
-WORKDIR /usr/src
+WORKDIR /app
 COPY package.json ./
 COPY tsconfig.json ./
 
 RUN npm install
-
-ADD ./src /usr/src
+ADD ./src /app/src
 RUN npm run tsc
 
-CMD ["node", "index.js"]
+# Runner stage
+FROM node:12.16.2-alpine as ts-runner
+WORKDIR  /app
+COPY --from=ts-builder ./app/build ./build
+COPY package* ./
+
+RUN npm install
+
+CMD ["node", "build/index.js"]

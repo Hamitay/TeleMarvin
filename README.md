@@ -12,4 +12,3 @@ TeleMarvin is a telegram bot that helps your RPG group to better schedule your s
 * Integrate a better configuration file
 * Add MIT license
 * Create github-actions integration for CI CD
-* All the code TODOS
