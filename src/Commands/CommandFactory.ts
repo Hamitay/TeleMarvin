@@ -3,6 +3,7 @@ import AddNewSessionCommand from './AddNewSessionCommand';
 import NextSessionCommand from './NextSessionCommand';
 import UnknownCommand from './UnknownCommand';
 import RemoveSessionCommand from './RemoveSessionCommand';
+import HelpCommand from './HelpCommand';
 export class CommandFactory {
   getCommand(args: string []): Command {
     const directive = args[0];
@@ -15,6 +16,8 @@ export class CommandFactory {
       return new NextSessionCommand();
     case 'deleteSession':
       return new RemoveSessionCommand(parameters);
+    case 'help':
+      return new HelpCommand();
     default:
       return new UnknownCommand();
     }

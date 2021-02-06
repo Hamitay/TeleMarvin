@@ -36,6 +36,7 @@ export class BotService {
   }
 
   registerBot(): void {
+    // Default Commands
     this.#bot.hears(this.#commandPattern, (context) =>
       this.processMessage(context)
     );
@@ -49,6 +50,6 @@ export class BotService {
 
     const response = await command.execute(groupId?.toString());
 
-    await context.reply(response);
+    await context.reply(response, { parse_mode: 'HTML' });
   }
 }
