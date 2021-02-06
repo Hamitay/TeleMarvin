@@ -8,13 +8,15 @@
     "tsc": "tsc",
     "build": "tsc -p tsconfig.json",
     "start": "npm run build -- -w",
-    "start:dev": "ts-node-dev ./src/*"
+    "start:dev": "ts-node-dev ./src"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/luxon": "^1.25.1",
     "cron": "^1.8.2",
     "dotenv": "^8.2.0",
+    "luxon": "^1.25.0",
     "sequelize": "^6.4.0",
     "sqlite3": "^5.0.1",
     "telegraf": "^4.0.1"

@@ -43,7 +43,7 @@ export class Jobs {
     sessions.forEach((session) => {
       this.#bot.telegram.sendPoll(
         session.groupId,
-        messages.POLL_MESSAGE(session.date.toDateString()),
+        messages.POLL_MESSAGE(session.date),
         NEXT_SESSION_OPTIONS,
         { is_anonymous: false, allows_multiple_answers: true }
       );

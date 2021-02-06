@@ -1,11 +1,10 @@
-import { group } from 'console';
 import { Model, DataTypes } from 'sequelize';
 import { databaseInstance } from '../db';
 
 const TABLE_NAME = 'sessions';
 export class Session extends Model {
   public id!: number;
-  public date!: Date;
+  public date!: string;
   public groupId!: string;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
