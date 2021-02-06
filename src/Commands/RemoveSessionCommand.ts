@@ -1,6 +1,6 @@
 import { Command } from './Command';
 import { SessionService } from '../services/SessionService';
-import { parseStringToDateTime, isDateInThePast } from '../utils/dateUtils';
+import { parseStringToDateTime } from '../utils/dateUtils';
 
 import messages from './messages';
 

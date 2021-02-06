@@ -1,6 +1,6 @@
 import { Session } from '../models/Session';
 import { SessionRepository } from '../repositories';
-import { getBrazilianCurrentTime } from '../utils';
+import { getCurrentTime } from '../utils/dateUtils';
 export class SessionService {
 
   #sessionRepository: SessionRepository;
@@ -14,8 +14,8 @@ export class SessionService {
   }
 
   async getNextSession(groupId: string): Promise<Session | undefined> {
-    const now = getBrazilianCurrentTime();
-    const sessions = await this.#sessionRepository.getSessionsAfterDateByGroupId(groupId, now)
+    const now = getCurrentTime();
+    const sessions = await this.#sessionRepository.getSessionsAfterDateByGroupId(groupId, now.toJSDate())
 
     if (sessions && sessions.length > 0) {
       return sessions[0].get();

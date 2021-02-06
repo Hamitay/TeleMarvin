@@ -15,8 +15,13 @@ function parseSQLDateToString(sqlDateString: string): string {
   return parseDateTimeToString(DateTime.fromSQL(sqlDateString));
 }
 
-function isDateInThePast(dateTime: DateTime, overrideNow?: DateTime) {
-  const now = overrideNow ? overrideNow : DateTime.fromObject({zone: TIMEZONE})
+
+function getCurrentTime(): DateTime {
+  return DateTime.fromObject({zone: TIMEZONE});
+}
+
+function isDateInThePast(dateTime: DateTime, overrideNow?: DateTime): boolean {
+  const now = overrideNow ? overrideNow : getCurrentTime();
   return dateTime < now;
 }
 
@@ -25,4 +30,5 @@ export {
   parseSQLDateToString,
   parseStringToDateTime,
   isDateInThePast,
+  getCurrentTime,
 };

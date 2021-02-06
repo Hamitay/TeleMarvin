@@ -1,6 +1,7 @@
 import { Telegraf } from 'telegraf';
 import { CronJob } from 'cron';
 import { SessionService } from '../services/SessionService';
+import { parseSQLDateToString } from '../utils/dateUtils';
 
 import messages from './messages';
 
@@ -43,7 +44,7 @@ export class Jobs {
     sessions.forEach((session) => {
       this.#bot.telegram.sendPoll(
         session.groupId,
-        messages.POLL_MESSAGE(session.date),
+        messages.POLL_MESSAGE(parseSQLDateToString(session.date)),
         NEXT_SESSION_OPTIONS,
         { is_anonymous: false, allows_multiple_answers: true }
       );
