@@ -1,8 +1,11 @@
-![alt text](https://hitchhikersguidegalaxy.github.io/imagens/characters/marvin.png)
+![alt text](https://randomactsofwhimsy.files.wordpress.com/2010/06/robot-marvin.jpg?w=250&h=300)
+
 
 > Here I am, brain the size of a planet, and they tell me to schedule your sessions.
 
 # TeleMarvin
+
+![Test Badge](https://github.com/Hamitay/TeleMarvin/workflows/Unit%20Tests/badge.svg)
 
 TeleMarvin is a telegram bot that helps your RPG group to better schedule your sessions. Chances are you suck at scheduling, but don't fret TeleMarvin is here to help you with his cheerful disposition.
 
