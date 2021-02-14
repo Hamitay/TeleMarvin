@@ -47,9 +47,8 @@ export class BotService {
     const groupId = context.chat?.id;
     const args = message.text.split(' ').slice(1);
     const command = this.#commandFactory.getCommand(args);
-
     const response = await command.execute(groupId?.toString());
 
-    await context.reply(response, { parse_mode: 'HTML' });
+    await response.respond(context);
   }
 }

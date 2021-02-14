@@ -1,5 +1,4 @@
 import { DateTime } from 'luxon';
-import { now } from 'sequelize/types/lib/utils';
 
 import {
   parseStringToDateTime,
