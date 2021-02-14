@@ -2,6 +2,8 @@ import { Command } from './Command';
 import { SessionService } from '../services/SessionService';
 import { parseSQLDateToString } from '../utils/dateUtils';
 import messages from './messages';
+import MessageResponse from './CommandResponse/MessageResponse';
+import CommandResponse from './CommandResponse';
 
 export default class AddNewSessionCommand implements Command {
 
@@ -11,13 +13,13 @@ export default class AddNewSessionCommand implements Command {
     this.#sessionService = new SessionService;
   }
 
-  async execute(groupId: string): Promise<string> {
+  async execute(groupId: string): Promise<CommandResponse> {
     const session = await this.#sessionService.getNextSession(groupId);
 
     if (session) {
-      return messages.NEXT_SESSION(parseSQLDateToString(session.date));
+      return new MessageResponse(messages.NEXT_SESSION(parseSQLDateToString(session.date)));
     }
 
-    return messages.NO_SESSION_SCHEDULED;
+    return new MessageResponse(messages.NO_SESSION_SCHEDULED);
   }
 }

@@ -5,6 +5,8 @@ import messages from './messages';
 import { ConstrainError } from '../exceptions/ConstrainError';
 
 import { parseStringToDateTime, isDateInThePast } from '../utils/dateUtils';
+import CommandResponse from './CommandResponse';
+import MessageResponse from './CommandResponse/MessageResponse';
 export default class AddNewSessionCommand implements Command {
 
   #parameters: string [];
@@ -16,33 +18,33 @@ export default class AddNewSessionCommand implements Command {
     this.#sessionService = new SessionService;
   }
 
-  async execute(groupId: string): Promise<string> {
+  async execute(groupId: string): Promise<CommandResponse> {
     const dateString = this.#parameters[0];
 
     if (!dateString) {
-      return messages.INVALID_PARAMETERS;
+      return new MessageResponse(messages.INVALID_PARAMETERS);
     }
 
     const dateTime = parseStringToDateTime(dateString);
 
     if (!dateTime.isValid) {
-      return messages.INSANE_DATE;
+      return new MessageResponse(messages.INSANE_DATE);
     }
 
     if (isDateInThePast(dateTime)) {
-      return messages.TIME_TRAVELER;
+      return new MessageResponse(messages.TIME_TRAVELER);
     }
 
     try {
       await this.#sessionService.createSession(groupId, dateTime.toJSDate());
     } catch(error) {
       if (error instanceof ConstrainError) {
-        return messages.CONSTRAIN_ERROR(dateString);
+        return new MessageResponse(messages.CONSTRAIN_ERROR(dateString));
       }
 
-      return messages.UNKNOWN_ERROR;
+      return new MessageResponse(messages.UNKNOWN_ERROR);
     }
 
-    return messages.NEW_SESSION(dateString);
+    return new MessageResponse(messages.NEW_SESSION(dateString));
   }
 }
