@@ -5,6 +5,8 @@ import UnknownCommand from './UnknownCommand';
 import RemoveSessionCommand from './RemoveSessionCommand';
 import InstantPoolCommand from './InstantPoolCommand';
 import HelpCommand from './HelpCommand';
+import GameCommand from './GameCommand';
+import EasterEggCommand from './EasterEggCommand';
 export class CommandFactory {
   getCommand(args: string []): Command {
     const directive = args[0];
@@ -21,6 +23,13 @@ export class CommandFactory {
       return new HelpCommand();
     case 'instantPool':
       return new InstantPoolCommand();
+    case 'grumble':
+      return new GameCommand();
+    case 'easter':
+    case 'grumblejack':
+    case 'ogre':
+    case 'jack':
+      return new EasterEggCommand(directive);
     default:
       return new UnknownCommand();
     }

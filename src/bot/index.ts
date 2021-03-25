@@ -5,6 +5,8 @@ import { CommandFactory } from '../Commands';
 
 const marvinRegex = /(_marvin)|(_m)\s.*/;
 
+const gameUrl = 'https://modest-murdock-763dd7.netlify.app/';
+
 export class BotService {
   #bot: Telegraf;
 
@@ -40,6 +42,8 @@ export class BotService {
     this.#bot.hears(this.#commandPattern, (context) =>
       this.processMessage(context)
     );
+
+    this.#bot.gameQuery((ctx) => ctx.answerGameQuery(gameUrl));
   }
 
   async processMessage(context: Context): Promise<void> {
