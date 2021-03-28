@@ -7,6 +7,7 @@ import InstantPoolCommand from './InstantPoolCommand';
 import HelpCommand from './HelpCommand';
 import GameCommand from './GameCommand';
 import EasterEggCommand from './EasterEggCommand';
+import ShipCommand from './ShipCommand';
 export class CommandFactory {
   getCommand(args: string []): Command {
     const directive = args[0];
@@ -30,6 +31,8 @@ export class CommandFactory {
     case 'ogre':
     case 'jack':
       return new EasterEggCommand(directive);
+    case 'ship':
+      return new ShipCommand();
     default:
       return new UnknownCommand();
     }
