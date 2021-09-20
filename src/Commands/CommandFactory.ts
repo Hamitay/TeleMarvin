@@ -8,6 +8,7 @@ import HelpCommand from './HelpCommand';
 import GameCommand from './GameCommand';
 import EasterEggCommand from './EasterEggCommand';
 import ShipCommand from './ShipCommand';
+import WeekPoolCommand from './WeekPoolCommand';
 export class CommandFactory {
   getCommand(args: string []): Command {
     const directive = args[0];
@@ -33,6 +34,8 @@ export class CommandFactory {
       return new EasterEggCommand(directive);
     case 'ship':
       return new ShipCommand();
+    case 'weekPool':
+      return new WeekPoolCommand();
     default:
       return new UnknownCommand();
     }
