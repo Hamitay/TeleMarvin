@@ -4,7 +4,7 @@ import WeekPoolResponse from './CommandResponse/WeekPoolResponse';
 
 import { getCurrentTime, dateToWeekDay } from '../utils/dateUtils';
 
-const MESSAGE = 'So you can\'t decide on day without my help? Why I\'m not suprised?'
+const MESSAGE = 'So you can\'t decide on the day without my help? Why I\'m not surprised?'
 
 export default class WeekPoolCommand implements Command {
 
