@@ -18,4 +18,10 @@ export class WeeklySessionService {
     const dow = Object.values(DayOfWeek)[today.getDay()];
     return await this.#weeklySessionRepository.getWeeklySessionsOfTheDay(dow);
   }
+
+  async getWeeklySessionsForGroup(groupId: string): Promise<WeeklySession[]> {
+    return await this.#weeklySessionRepository.getWeeklySessionsForGroup(
+      groupId
+    );
+  }
 }

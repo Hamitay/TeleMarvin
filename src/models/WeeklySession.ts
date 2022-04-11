@@ -20,12 +20,12 @@ WeeklySession.init(
     dow: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: 'group_date_constrain'
+      unique: 'group_dow_constrain'
     },
     groupId: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: 'group_date_constrain'
+      unique: 'group_dow_constrain'
     },
   },
   {

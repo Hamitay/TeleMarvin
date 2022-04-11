@@ -1,5 +1,4 @@
 import { Command } from "./Command";
-import { SessionService } from "../services/SessionService";
 import messages from "./messages";
 
 import { ConstrainError } from "../exceptions/ConstrainError";
@@ -35,7 +34,17 @@ export default class AddNewWeeklySessionCommand implements Command {
         return new MessageResponse(messages.INVALID_PARAMETERS)
     }
 
-    this.#weeklySessionService.createSession(groupId, dow)
+
+    try {
+      await this.#weeklySessionService.createSession(groupId, dow)
+    } catch(error) {
+      console.error("ERRORRRR")
+      if (error instanceof ConstrainError) {
+        return new MessageResponse(messages.WEEKLY_CONSTRAIN_ERROR(dowString));
+      }
+
+      return new MessageResponse(messages.UNKNOWN_ERROR);
+    }
 
     return new MessageResponse(messages.NEW_WEEKLY_SESSION(dowString));
   }
