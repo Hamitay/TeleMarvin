@@ -28,7 +28,7 @@ export default class PoolResponse implements CommandResponse {
 
     await botContext.replyWithPoll(
       this.#message,
-      this.getDays(7),
+      this.getDays(8),
       { is_anonymous: false, allows_multiple_answers: true },
     );
   }

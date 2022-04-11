@@ -28,7 +28,6 @@ function isDateInThePast(dateTime: DateTime, overrideNow?: DateTime): boolean {
 }
 
 function dateToWeekDay(date: DateTime): string {
-  console.log(date.weekday)
   return WEEK_DAY_MAP[date.weekday - 1];
 }
 

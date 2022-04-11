@@ -9,6 +9,7 @@ import GameCommand from './GameCommand';
 import EasterEggCommand from './EasterEggCommand';
 import ShipCommand from './ShipCommand';
 import WeekPoolCommand from './WeekPoolCommand';
+import AddNewWeeklySessionCommand from './AddNewWeeklySession';
 export class CommandFactory {
   getCommand(args: string []): Command {
     const directive = args[0];
@@ -36,6 +37,8 @@ export class CommandFactory {
       return new ShipCommand();
     case 'weekPool':
       return new WeekPoolCommand();
+    case 'weekly':
+      return new AddNewWeeklySessionCommand(parameters);
     default:
       return new UnknownCommand();
     }

@@ -1,22 +1,28 @@
-import { Telegraf } from 'telegraf';
+import { session, Telegraf } from 'telegraf';
 import { CronJob } from 'cron';
 import { SessionService } from '../services/SessionService';
 import { parseSQLDateToString } from '../utils/dateUtils';
 
 import messages from './messages';
+import { WeeklySessionService } from '../services/WeeklySessionService';
 
 const TIMEZONE = 'America/Sao_Paulo';
 const NEXT_SESSION_OPTIONS = ['17h', '18h', '19h', '20h', '21h', 'Other'];
 
 const NEXT_SESSION_CRON = '0 30 10 * * * ';
+const NEXT_WEEKLYSESSION_CRON = '0 31 10 * * * ';
+
 export class Jobs {
   #bot: Telegraf;
 
   #sessionService: SessionService;
 
+  #weeklySessionService: WeeklySessionService;
+
   constructor(bot: Telegraf) {
     this.#bot = bot;
     this.#sessionService = new SessionService();
+    this.#weeklySessionService = new WeeklySessionService();
   }
 
   setUpJobs(): void {
@@ -28,14 +34,35 @@ export class Jobs {
       TIMEZONE
     );
 
+    const weeklySessionJob = new CronJob(
+      NEXT_WEEKLYSESSION_CRON,
+      async () => await this.nextWeeklySession(),
+      null,
+      true,
+      TIMEZONE
+    )
+
     const stopJobs = () => {
       console.info('Stopping cron jobs');
       job.stop();
+      weeklySessionJob.stop();
     };
 
     // Stop jobs on process exit
     process.once('SIGINT', stopJobs);
     process.once('SIGTERM', stopJobs);
+  }
+
+  async nextWeeklySession(): Promise<void> {
+    const sessions = await this.#weeklySessionService.getWeeklySessionsOfTheDay();
+    sessions.forEach((session) => {
+      this.#bot.telegram.sendPoll(
+        session.groupId,
+        messages.WEEKLY_POLL_MESSAGE(session.dow),
+        NEXT_SESSION_OPTIONS,
+        { is_anonymous: false, allows_multiple_answers: true }
+      )
+    })
   }
 
   async nextSessionJob(): Promise<void> {
