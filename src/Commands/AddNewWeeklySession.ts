@@ -37,6 +37,6 @@ export default class AddNewWeeklySessionCommand implements Command {
 
     this.#weeklySessionService.createSession(groupId, dow)
 
-    return new MessageResponse(dow);
+    return new MessageResponse(messages.NEW_WEEKLY_SESSION(dowString));
   }
 }

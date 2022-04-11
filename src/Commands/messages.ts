@@ -8,5 +8,10 @@ export default {
   ' he is just stupid. Who knows?',
   CONSTRAIN_ERROR: (date: string): string => `Sigh. There is already a session scheduled for ${date}`,
   UNKNOWN_ERROR: 'An unknown error appears to have ocurred. This is most likely your fault',
-  SESSION_DELETED: (date: string): string => `I've deleted your session on ${date}. More bad news, what a shocker.`
+  SESSION_DELETED: (date: string): string => `I've deleted your session on ${date}. More bad news, what a shocker.`,
+  NEW_WEEKLY_SESSION: (dow: string): string => `I've scheduled a new session for you every ${capitalizeFirstLetter(dow)}`
+}
+
+const capitalizeFirstLetter = (string: string): string => {
+  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
