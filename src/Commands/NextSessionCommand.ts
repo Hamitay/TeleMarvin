@@ -31,7 +31,7 @@ export default class AddNewSessionCommand implements Command {
       msg.push(messages.NEXT_SESSION(parseSQLDateToString(session.date)));
     }
 
-    if (weeklySessions) {
+    if (weeklySessions.length > 0) {
       msg.push(messages.NEXT_WEEKLY_SESSION(weeklySessions[0].dow))
     }
 
