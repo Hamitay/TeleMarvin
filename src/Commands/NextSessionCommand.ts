@@ -31,7 +31,7 @@ export default class AddNewSessionCommand implements Command {
       msg.push(messages.NEXT_WEEKLY_SESSION(weeklySessions[0].dow))
     }
 
-    if(msg.length == 0) {
+    if(!msg.length) {
       return new MessageResponse(messages.NO_SESSION_SCHEDULED);
     }
 
