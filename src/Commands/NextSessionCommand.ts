@@ -23,16 +23,16 @@ export default class AddNewSessionCommand implements Command {
 
     let msg = [];
 
-    if(!session && !weeklySessions) {
-      return new MessageResponse(messages.NO_SESSION_SCHEDULED);
-    }
-
     if (session) {
       msg.push(messages.NEXT_SESSION(parseSQLDateToString(session.date)));
     }
 
     if (weeklySessions.length > 0) {
       msg.push(messages.NEXT_WEEKLY_SESSION(weeklySessions[0].dow))
+    }
+
+    if(msg.length == 0) {
+      return new MessageResponse(messages.NO_SESSION_SCHEDULED);
     }
 
     return new MessageResponse(msg.join('\n'))
