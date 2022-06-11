@@ -1,7 +1,7 @@
 import { Context } from 'telegraf';
 import CommandResponse from '.';
 
-const NEXT_SESSION_OPTIONS = ['17h', '18h', '19h', '20h', '21h', 'Other'];
+const NEXT_SESSION_OPTIONS = ['18h', '18h30', '19h', '19h30', '20h', '20h30', '21h', 'Other'];
 
 export default class PoolResponse implements CommandResponse {
   #message: string;
