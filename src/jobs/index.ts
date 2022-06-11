@@ -7,7 +7,7 @@ import messages from './messages';
 import { WeeklySessionService } from '../services/WeeklySessionService';
 
 const TIMEZONE = 'America/Sao_Paulo';
-const NEXT_SESSION_OPTIONS = ['17h', '18h', '19h', '20h', '21h', 'Other'];
+const NEXT_SESSION_OPTIONS = ['18h', '18h30', '19h', '19h30', '20h', '20h30', '21h', 'Other'];
 
 const NEXT_SESSION_CRON = '0 30 10 * * * ';
 const NEXT_WEEKLYSESSION_CRON = '0 31 10 * * * ';
