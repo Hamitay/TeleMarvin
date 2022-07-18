@@ -24,4 +24,11 @@ export class WeeklySessionService {
       groupId
     );
   }
+
+  async deleteSession(groupId: string, dow: DayOfWeek): Promise<void> {
+    await this.#weeklySessionRepository.removeWeeklySessionForGroup(
+      groupId,
+      dow
+    );
+  }
 }

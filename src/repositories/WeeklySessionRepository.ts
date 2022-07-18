@@ -35,4 +35,16 @@ export class WeeklySessionRepository {
     });
     return await sessions;
   }
+
+  async removeWeeklySessionForGroup(
+    groupId: string,
+    dow: DayOfWeek
+  ): Promise<void> {
+    await WeeklySession.destroy({
+      where: {
+        groupId,
+        dow,
+      },
+    });
+  }
 }
