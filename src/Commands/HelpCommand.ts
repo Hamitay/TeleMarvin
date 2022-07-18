@@ -11,8 +11,8 @@ const helpMessage =
   "- <b>deleteSession</b>: <i>dd/mm/yy</i>: Deletes the session at the given date. \n" +
   "- <b>instantPool</b>: Creates a sample session hour pool, for those spontaneous sessions. \n" +
   "- <b>weekPool</b>: Creates a sample week pool, for those hard to schedule weeks. \n" +
-  "- <b>weekly</b> <i>day-of-week</i>: Registers a new weekly session for this chat. \n";
-("- <b>removeWeekly</b> <i>day-of-week</i>: Deletes the weekly session at the given day of week. \n");
+  "- <b>weekly</b> <i>day-of-week</i>: Registers a new weekly session for this chat. \n" +
+  "- <b>removeWeekly</b> <i>day-of-week</i>: Deletes the weekly session at the given day of week. \n";
 " \n" +
   "Are you missing any feature? Feel free to open an issue or even a PR on " +
   '<a href="https://github.com/Hamitay/TeleMarvin/">TeleMarvin\'s repo @ Github</a>';
