@@ -3,7 +3,7 @@ import { Message } from 'typegram/message';
 
 import { CommandFactory } from '../Commands';
 
-const marvinRegex = /(_marvin)|(_m)\s.*/;
+const marvinRegex = /(^_marvin)|(^_m)\s.*/;
 
 const gameUrl = 'https://modest-murdock-763dd7.netlify.app/';
 
