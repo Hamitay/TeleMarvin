@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon';
 
-const STRING_FORMAT = process.env.STRING_FORMAT || 'dd/LL/yy';
+const STRING_FORMAT = process.env.STRING_FORMAT || 'd/LL/yy';
 const TIMEZONE = process.env.TIMEZONE || 'America/Sao_Paulo';
 
 const WEEK_DAY_MAP = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo']
