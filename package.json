@@ -24,7 +24,7 @@
     "luxon": "^1.25.0",
     "sequelize": "^6.4.0",
     "sqlite3": "^5.0.1",
-    "telegraf": "^4.0.1"
+    "telegraf": "^4.11.2"
   },
   "devDependencies": {
     "@types/cron": "^1.7.2",
